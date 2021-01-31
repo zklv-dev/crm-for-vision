@@ -71,7 +71,6 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
             'host' => $host,
             'port' => env('DB_PORT', '3306'),
             'database' => $database,
