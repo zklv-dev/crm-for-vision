@@ -176,8 +176,7 @@
 
                         <div class="form-group">
                             <select name="flag">
-                                <option value="{{ $client->comment }}" selected>{{ $client->comment }}</option>
-                                <option value="Отказ">Отказ</option>
+                                <option value="Условный отказ">Условный отказ</option>
                                 <option value="Позвонить">Позвонить</option>
                             </select>
                         </div>
