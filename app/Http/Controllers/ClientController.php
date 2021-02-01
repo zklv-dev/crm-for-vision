@@ -31,9 +31,10 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Client $client)
     {
-        return view('clients.create');
+        $users = User::all();
+        return view('clients.create', compact('users'));
     }
 
     /**
@@ -102,7 +103,7 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Client $client)
-    {   
+    {
 
         request()->validate([
             'name' => 'required',
@@ -112,7 +113,7 @@ class ClientController extends Controller
             'city' => 'required',
             'results' => 'required'
         ]);
-            
+
         $client->update([
             'name' => request('name'),
             'detail' => request('detail'),

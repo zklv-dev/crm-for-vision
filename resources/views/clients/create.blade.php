@@ -136,7 +136,18 @@
                             <input type="text" name="where" class="form-control" id="clientWhere"
                                 placeholder="Откуда клиент узнал о нас">
                         </div>
-                        <input type="hidden" name="user_new_id" value="Не заполнено">
+                        <div class="form-group">
+                            <strong>Новый менеджер:</strong>
+                            <br />
+                            <select name="user_new_id">
+                                <option value="Не выбрано" selected>Не выбрано</option>
+                                @foreach ($users as $user)
+                                <option value="{{ $user->name }}">
+                                    {{ $user->name }}
+                                </option>
+                            @endforeach
+                            </select>
+                        </div>
                         <input type="hidden" name="comment" value="Не заполнено">
                         <input type="hidden" name="results" value="Не заполнено">
                         <input type="hidden" name="necessary" value="Не заполнено">

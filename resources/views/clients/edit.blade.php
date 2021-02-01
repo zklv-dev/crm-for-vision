@@ -109,51 +109,47 @@
 
                         <div class="form-group">
                             <label for="clientName">Имя</label>
-                            <input value="{{ $client->name }}" type="text" name="name" class="form-control"
+                            <input disabled value="{{ $client->name }}" type="text" name="name" class="form-control"
                                 id="clientName" placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input value="{{ $client->phone_number }}" type="number" name="phone_number"
+                            <input disabled value="{{ $client->phone_number }}" type="number" name="phone_number"
                                 class="form-control" id="clientPhoneNumber" placeholder="Номер телефона">
                         </div>
 
                         <div class="form-group">
                             <label for="clientDetails">Детали</label>
-                            <textarea class="form-control" name="detail" rows="5"
+                            <textarea disabled class="form-control" name="detail" rows="5"
                                 id="clientDetails">{{ $client->detail }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input value="{{ $client->age }}" type="number" name="age" class="form-control" id="clientAge"
+                            <input disabled value="{{ $client->age }}" type="number" name="age" class="form-control" id="clientAge"
                                 placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
 
-                            <input value="{{ $client->city }}" type="text" name="city" class="form-control"
+                            <input disabled value="{{ $client->city }}" type="text" name="city" class="form-control"
                                 id="clientCity" placeholder="Город">
                         </div>
 
                         <div class="form-group">
                             <label for="clientWhere">Откуда клиент узнал о нас</label>
 
-                            <input value="{{ $client->where }}" type="text" name="where" class="form-control"
+                            <input disabled value="{{ $client->where }}" type="text" name="where" class="form-control"
                                 id="clientWhere" placeholder="Откуда клиент узнал о нас">
                         </div>
 
                         <div class="form-group">
                             <strong>Новый менеджер:</strong>
                             <br />
-                            <select name="user_new_id">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->name }}">
-                                        {{ $user->name }}
-                                    </option>
-                                @endforeach
+                            <select disabled name="user_new_id">
+                                <option value="{{ $client->user_new_id }}">{{ $client->user_new_id }}</option>
                             </select>
                         </div>
 
