@@ -18,12 +18,8 @@ class AddToClientsTable extends Migration
             $table->integer('age')->default(0);
             $table->bigInteger('phone_number')->default(0);
             $table->string('city')->default('Не заполнено');
-            $table->string('where')->default('Не заполнено');
-            $table->string('results')->default('Не заполнено');
-            $table->string('necessary')->default('Не заполнено');
-            $table->string('flag')->default(0);
+            $table->string('where')->default('Не заполнено'); 
             $table->string('user_new_id');
-            $table->string('comment')->default('Не заполнено');
         });
     }
 

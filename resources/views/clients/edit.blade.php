@@ -127,8 +127,8 @@
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input disabled value="{{ $client->age }}" type="number" name="age" class="form-control" id="clientAge"
-                                placeholder="Возраст">
+                            <input disabled value="{{ $client->age }}" type="number" name="age" class="form-control"
+                                id="clientAge" placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
@@ -146,14 +146,14 @@
                         </div>
 
                         <div class="form-group">
-                            <strong>Новый менеджер:</strong>
+                            <strong>Назначенный менеджер:</strong>
                             <br />
                             <select disabled name="user_new_id">
                                 <option value="{{ $client->user_new_id }}">{{ $client->user_new_id }}</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="clientResults">Результат разговора</label>
 
                             <input value="{{ $client->results }}" type="text" name="results" class="form-control"
@@ -164,10 +164,9 @@
                             <label for="clientNecessary">Нужно ли перезвонить клиенту? Дата для повторного звонка</label>
 
                             <input value="{{ $client->necessary }}" type="text" name="necessary" class="form-control"
-                                id="clientNecessary"
-                                placeholder="Нужно ли перезвонить клиенту?">
+                                id="clientNecessary" placeholder="Нужно ли перезвонить клиенту?">
 
-                                <input name="recall" type="date" class="form-control" placeholder="Дата для повторного звонка">
+                            <input name="recall" type="date" class="form-control" placeholder="Дата для повторного звонка">
                         </div>
 
                         <div class="form-group">
@@ -182,14 +181,63 @@
                             <textarea class="form-control" name="comment" rows="5"
                                 id="clientComment">{{ $client->comment }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <button type="submit" class="btn btn-primary">Добавить</button> --}}
 
+                    </form>
+                    <form method="POST" action="{{ route('comment.add') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="clientResults">Результат разговора</label>
+                            <input id="clientResults" type="text" name="results" class="form-control" />
+                            <input type="hidden" name="client_id" value="{{ $client->id }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="clientNecessary">Дата для повторного звонка</label>
+                            <input id="clientNecessary" name="recall" type="date" class="form-control"
+                                placeholder="Дата для повторного звонка">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientFlag">Флаг условного отказа</label>
+
+                            <select id="clientFlag" name="flag">
+                                <option value="Позвонить">Позвонить</option>
+                                <option value="Условный отказ">Условный отказ</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>
                 </div>
                 <!--end card-body-->
             </div>
             <!--end card-->
         </div> <!-- end col -->
+    </div>
+    <div class="row">
+        <div class=" col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body"> 
+                    @include('clients.replies', ['comments' => $client->comments, 'client_id' => $client->id])
+
+                    <hr />
+                </div>
+
+                {{-- <div class="card-body">
+                    <h5>Leave a comment</h5>
+                    <form method="POST" action="{{ route('comment.add') }}">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="comment" class="form-control" />
+                            <input type="hidden" name="client_id" value="{{ $client->id }}" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;"
+                                value="Add Comment" />
+                        </div>
+                    </form>
+                </div> --}}
+
+            </div>
+        </div>
     </div>
 
 @endsection

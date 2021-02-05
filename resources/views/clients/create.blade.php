@@ -142,18 +142,18 @@
                             <select name="user_new_id">
                                 <option value="Не выбрано" selected>Не выбрано</option>
                                 @foreach ($users as $user)
-                                <option value="{{ $user->name }}">
-                                    {{ $user->name }}
-                                </option>
-                            @endforeach
+                                    <option value="{{ $user->name }}">
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
-                        <input type="hidden" name="comment" value="Не заполнено">
+                        {{-- <input type="hidden" name="comment" value="Не заполнено">
                         <input type="hidden" name="results" value="Не заполнено">
                         <input type="hidden" name="necessary" value="Не заполнено">
                         <select name="flag" style="display: none">
                             <option value="Не заполнено" selected></option>
-                        </select>
+                        </select> --}}
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>
                 </div>

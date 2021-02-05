@@ -34,4 +34,14 @@ class Client extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('client_id');
+    }
+
+    public function latestComment()
+    {
+        return $this->hasOne(Comment::class)->latest();
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::latest()->paginate(5);
+        $clients = Client::all();
+
+        
+
         return view('home', compact('clients'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -62,12 +66,7 @@ class ClientController extends Controller
             'phone_number' => request('phone_number'),
             'city' => request('city'),
             'where' => request('where'),
-            'results' => request('results'),
-            'necessary' => request('necessary'),
-            'flag' => request('flag'),
-            'user_new_id' => request('user_new_id'),
-            'comment' => request('comment'),
-            'recall' => request('recall')
+            'user_new_id' => request('user_new_id')
         ]);
 
         return redirect()->route('home')->with('success', 'Клиент создан успешно');
@@ -122,12 +121,7 @@ class ClientController extends Controller
             'phone_number' => request('phone_number'),
             'city' => request('city'),
             'where' => request('where'),
-            'results' => request('results'),
-            'necessary' => request('necessary'),
-            'flag' => request('flag'),
-            'user_new_id' => request('user_new_id'),
-            'comment' => request('comment'),
-            'recall' => request('recall')
+            'user_new_id' => request('user_new_id')
         ]);
 
         return redirect()->route('home')->with('success', 'Клиент обновлён');

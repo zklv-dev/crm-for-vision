@@ -62,11 +62,10 @@
                                     <th>Возраст клиента</th>
                                     <th>Город/район</th>
                                     <th>Откуда клиент узнал о нас</th>
-                                    <th>Новый менеджер</th>
+                                    <th>Назначенный менеджер</th>
                                     <th>Результат разговора</th>
-                                    <th>Нужно ли перезвонить клиенту? Дата для повторного звонка</th>
+                                    <th>Дата для повторного звонка</th>
                                     <th>Флаг условного отказа</th>
-                                    <th>Итоговый комментарий</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
@@ -83,12 +82,22 @@
                                         <td>{{ $client->city }}</td>
                                         <td>{{ $client->where }}</td>
                                         <td>{{ $client->user_new_id }}</td>
-                                        <td>{{ $client->results }}</td>
-                                        <td>{{ $client->necessary }}
-                                            <br>{{ $client->recall }}
+                                        {{-- {{ $client->comments }} --}}
+                                        {{-- @include('clients.comment', ['comments' => $client->comments, 'client_id' =>
+                                        $client->id]) --}}
+
+                                        <td>
+                                            {{ $client->comments->last()->results ?? 'Не заполнено' }}
                                         </td>
-                                        <td>{{ $client->flag }}</td>
-                                        <td>{{ $client->comment }}</td>
+                                        <td>
+                                            {{-- {{ $last_com->comments->flag }} --}}
+                                            {{ $client->comments->last()->recall ?? 'Не заполнено' }}
+                                        </td>
+                                        <td>
+                                            {{-- {{ $last_com->comments->recall }} --}}
+                                            {{ $client->comments->last()->flag ?? 'Не заполнено' }}
+                                        </td>
+
                                         <td class="text-right">
                                             <form action="{{ route('clients.destroy', $client->id) }}" method="POST">
                                                 @can('client-edit')
