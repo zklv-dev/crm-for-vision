@@ -15,43 +15,43 @@
 
 
 
-    {!! Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
+    {!!  Form::open(['route' => 'users.store', 'method' => 'POST']) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                {!!  Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
+                {!!  Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Password:</strong>
-                {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+                {!!  Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Confirm Password:</strong>
-                {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                {!!  Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Role:</strong>
-                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
+                {!!  Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    {!! Form::close() !!} --}}
+    {!!  Form::close() !!} --}}
 
     <div class="row">
         <div class="col-sm-12">
@@ -125,7 +125,13 @@
                         </div>
                         <div class="form-group">
                             <label>Роль</label>
-                            {!! Form::select('roles[]', $roles, [], ['class' => 'form-control']) !!}
+                            <select name="roles" id="">
+                                @foreach ($roles as $role)
+                                    @if ($role !== 'Admin')
+                                        <option value="{{ $role }}">{{ $role }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>

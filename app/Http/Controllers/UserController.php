@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -82,11 +83,21 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
 
-        return view('users.edit', compact('user', 'roles', 'userRole'));
+        // $rolesCollection = Collection::make($roles);
+        // $filterRoleCollection = $rolesCollection->reject(function ($i) {
+
+        //     if (arry($i, 'Admin') !== 'Admin') {
+        //         return false;
+        //     } else {
+        //         return true;
+        //     }
+        // });
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**

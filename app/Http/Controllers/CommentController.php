@@ -10,6 +10,11 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
+        request()->validate([
+            'results' => 'required',
+            'flag' => 'required'
+        ]);
+
         $comment = new Comment;
         $comment->results = $request->results;
         $comment->flag = $request->flag;

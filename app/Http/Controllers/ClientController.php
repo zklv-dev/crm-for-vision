@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -24,9 +25,6 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-
-        
-
         return view('home', compact('clients'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -88,9 +86,19 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Client $client, User $user)
     {
         $users = User::all();
+        $clients = Client::all();
+
+        if (
+            $client->comments->last()
+            && $client->comments->last()->flag !== 'Позвонить' 
+            && $client->comments->last()->flag !== 'Не заполнено'
+            && !Auth::user()->hasRole(['Admin', 'Director'])
+        ) {
+            return redirect('/');
+        }
         return view('clients.edit', compact('client', 'users'));
     }
 
@@ -109,8 +117,7 @@ class ClientController extends Controller
             'detail' => 'required',
             'age' => 'numeric',
             'phone_number' => 'required|numeric',
-            'city' => 'required',
-            'results' => 'required'
+            'city' => 'required'
         ]);
 
         $client->update([
@@ -124,7 +131,7 @@ class ClientController extends Controller
             'user_new_id' => request('user_new_id')
         ]);
 
-        return redirect()->route('home')->with('success', 'Клиент обновлён');
+        return back();
     }
 
     /**

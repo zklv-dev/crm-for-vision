@@ -102,109 +102,104 @@
                 </div>
                 <!--end card-header-->
                 <div class="card-body">
-                    <form action="{{ route('clients.update', $client->id) }}" method="POST">
+                    <form action="{{ route('clients.update', $client->id) }}" method="POST" id="editForm1">
 
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
                             <label for="clientName">Имя</label>
-                            <input disabled value="{{ $client->name }}" type="text" name="name" class="form-control"
-                                id="clientName" placeholder="ФИО">
+                            <input @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif value="{{ $client->name }}" type="text" name="name"
+                                class="form-control" id="clientName" placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input disabled value="{{ $client->phone_number }}" type="number" name="phone_number"
-                                class="form-control" id="clientPhoneNumber" placeholder="Номер телефона">
+                            <input @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif value="{{ $client->phone_number }}" type="number"
+                                name="phone_number" class="form-control" id="clientPhoneNumber"
+                                placeholder="Номер телефона">
                         </div>
 
                         <div class="form-group">
                             <label for="clientDetails">Детали</label>
-                            <textarea disabled class="form-control" name="detail" rows="5"
+                            <textarea @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif class="form-control" name="detail" rows="5"
                                 id="clientDetails">{{ $client->detail }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input disabled value="{{ $client->age }}" type="number" name="age" class="form-control"
-                                id="clientAge" placeholder="Возраст">
+                            <input @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif value="{{ $client->age }}" type="number" name="age"
+                                class="form-control" id="clientAge" placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
 
-                            <input disabled value="{{ $client->city }}" type="text" name="city" class="form-control"
-                                id="clientCity" placeholder="Город">
+                            <input @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif value="{{ $client->city }}" type="text" name="city"
+                                class="form-control" id="clientCity" placeholder="Город">
                         </div>
 
                         <div class="form-group">
                             <label for="clientWhere">Откуда клиент узнал о нас</label>
 
-                            <input disabled value="{{ $client->where }}" type="text" name="where" class="form-control"
+                            <select @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif type="text" name="where" class="form-control"
                                 id="clientWhere" placeholder="Откуда клиент узнал о нас">
+                                <option value="{{ $client->where }}">{{ $client->where }}</option>
+                                <option value="Инстаграм">Инстаграм</option>
+                                <option value="Фэйсбук">Фэйсбук</option>
+                                <option value="Лалфо">Лалфо</option>
+                                <option value="Подсказали друзья, родственники">Подсказали друзья, родственники</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <strong>Назначенный менеджер:</strong>
                             <br />
-                            <select disabled name="user_new_id">
+                            <select class="form-control" @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif name="user_new_id">
                                 <option value="{{ $client->user_new_id }}">{{ $client->user_new_id }}</option>
+                                @foreach ($users as $user)
+                                    @if (!$user->hasRole('Admin') && $client->user_new_id !== $user->name)
+                                        <option value="{{ $user->name }}">
+                                            {{ $user->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
 
-                        {{-- <div class="form-group">
-                            <label for="clientResults">Результат разговора</label>
+                        @if (Auth::user()->hasRole(['Admin', 'Director']))
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Обновить данные</button>
+                            <div class="page-title-box">
 
-                            <input value="{{ $client->results }}" type="text" name="results" class="form-control"
-                                id="clientResults" placeholder="Результат разговора">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="clientNecessary">Нужно ли перезвонить клиенту? Дата для повторного звонка</label>
-
-                            <input value="{{ $client->necessary }}" type="text" name="necessary" class="form-control"
-                                id="clientNecessary" placeholder="Нужно ли перезвонить клиенту?">
-
-                            <input name="recall" type="date" class="form-control" placeholder="Дата для повторного звонка">
-                        </div>
-
-                        <div class="form-group">
-                            <select name="flag">
-                                <option value="Условный отказ">Условный отказ</option>
-                                <option value="Позвонить">Позвонить</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="clientComment">Итоговый комментарий</label>
-                            <textarea class="form-control" name="comment" rows="5"
-                                id="clientComment">{{ $client->comment }}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Добавить</button> --}}
-
+                            </div>
+                            <!--end page-title-box-->
+                        @endif
                     </form>
-                    <form method="POST" action="{{ route('comment.add') }}">
+                    <form method="POST" action="{{ route('comment.add') }}" id="editForm2">
                         @csrf
                         <div class="form-group">
                             <label for="clientResults">Результат разговора</label>
-                            <input id="clientResults" type="text" name="results" class="form-control" />
+                            <textarea id="clientResults" type="text" name="results" class="form-control" value="" /> Не заполнено
+                            </textarea>
                             <input type="hidden" name="client_id" value="{{ $client->id }}" />
                         </div>
                         <div class="form-group">
                             <label for="clientNecessary">Дата для повторного звонка</label>
-                            <input id="clientNecessary" name="recall" type="date" class="form-control"
+                            <input id="clientNecessary" name="recall" type="date" class="form-control" value=""
                                 placeholder="Дата для повторного звонка">
                         </div>
                         <div class="form-group">
                             <label for="clientFlag">Флаг условного отказа</label>
 
                             <select id="clientFlag" name="flag">
+                                @if (Auth::user()->hasRole(['Admin', 'Director']))
+                                    <option value="Не заполнено">Не заполнено</option>
+                                @endif
                                 <option value="Позвонить">Позвонить</option>
                                 <option value="Условный отказ">Условный отказ</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Добавить комментарий</button>
                     </form>
                 </div>
                 <!--end card-body-->
@@ -215,7 +210,7 @@
     <div class="row">
         <div class=" col-md-6 mx-auto">
             <div class="card">
-                <div class="card-body"> 
+                <div class="card-body">
                     @include('clients.replies', ['comments' => $client->comments, 'client_id' => $client->id])
 
                     <hr />

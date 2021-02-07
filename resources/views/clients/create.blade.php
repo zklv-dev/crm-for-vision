@@ -133,18 +133,25 @@
 
                         <div class="form-group">
                             <label for="clientWhere">Откуда клиент узнал о нас</label>
-                            <input type="text" name="where" class="form-control" id="clientWhere"
+                            <select type="text" name="where" class="form-control" id="clientWhere"
                                 placeholder="Откуда клиент узнал о нас">
+                                <option value="Инстаграм">Инстаграм</option>
+                                <option value="Фэйсбук">Фэйсбук</option>
+                                <option value="Лалфо">Лалфо</option>
+                                <option value="Подсказали друзья, родственники">Подсказали друзья, родственники</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <strong>Новый менеджер:</strong>
+                            <strong>Назначить менеджера:</strong>
                             <br />
-                            <select name="user_new_id">
+                            <select class="form-control" name="user_new_id">
                                 <option value="Не выбрано" selected>Не выбрано</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->name }}">
-                                        {{ $user->name }}
-                                    </option>
+                                    @if (!$user->hasRole('Admin'))
+                                        <option value="{{ $user->name }}">
+                                            {{ $user->name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

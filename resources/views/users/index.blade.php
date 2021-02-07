@@ -45,10 +45,9 @@
                     <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
                     <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
                     @if (Auth::id() !== $user->id)
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' =>
-                        'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                        {!! Form::close() !!}
+                        {!!  Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
+                        {!!  Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        {!!  Form::close() !!}
                     @endif
                 </td>
             </tr>
@@ -56,7 +55,7 @@
     </table>
 
 
-    {!! $data->render() !!}
+    {!!  $data->render() !!}
 
 
     <p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p> --}}
@@ -101,32 +100,35 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $key => $user)
-                                    <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            @if (!empty($user->getRoleNames()))
-                                                @foreach ($user->getRoleNames() as $v)
-                                                    <label class="badge badge-success">{{ $v }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @can('user-edit')
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('users.edit', $user->id) }}">Изменить</a>
-                                            @endcan
-                                            @can('user-delete')
-                                                @if (Auth::id() !== $user->id)
-                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy',
-                                                    $user->id], 'style' => 'display:inline']) !!}
-                                                    {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
-                                                    {!! Form::close() !!}
+                                    @if (!$user->hasRole('Admin'))
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                @if (!empty($user->getRoleNames()))
+                                                    @foreach ($user->getRoleNames() as $v)
+                                                        <label class="badge badge-success">{{ $v }}</label>
+                                                    @endforeach
                                                 @endif
-                                            @endcan
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                @can('user-edit')
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('users.edit', $user->id) }}">Изменить</a>
+                                                @endcan
+                                                @can('user-delete')
+                                                    @if (Auth::id() !== $user->id)
+                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy',
+                                                        $user->id], 'style' => 'display:inline']) !!}
+                                                        {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
+                                                        {!! Form::close() !!}
+                                                    @endif
+                                                @endcan
+                                            </td>
+                                        </tr>
+
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
