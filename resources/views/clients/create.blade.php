@@ -137,10 +137,10 @@
                                 placeholder="Откуда клиент узнал о нас">
                                 <option value="Инстаграм">Инстаграм</option>
                                 <option value="Фэйсбук">Фэйсбук</option>
-                                <option value="Лалфо">Лалфо</option>
+                                <option value="Лалфо">Лалафо</option>
                                 <option value="Подсказали друзья, родственники">Подсказали друзья, родственники</option>
                             </select>
-                        </div>
+                        </div>xW2r8ax%
                         <div class="form-group">
                             <strong>Назначить менеджера:</strong>
                             <br />
