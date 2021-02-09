@@ -143,8 +143,7 @@
                 <ul class="list-unstyled topbar-nav mb-0">
                     <li class="creat-btn">
                         <div class="nav-link">
-                            <a class=" btn btn-sm btn-soft-primary" href="{{ route('home') }}" role="button"><i
-                                    class="fas fa-plus mr-2"></i>Все клиенты</a>
+                            <a class=" btn btn-sm btn-soft-primary" href="{{ route('home') }}" role="button"><i class="fas fa-globe-asia"></i> Все клиенты</a>
                         </div>
                     </li>
                     <li class="creat-btn">
@@ -157,10 +156,10 @@
                         <div class="nav-link">
                             @can('role-create')
                                 <a class=" btn btn-sm btn-soft-primary" href="{{ route('roles.index') }}"
-                                    role="button"><i class="fas fa-plus mr-2"></i>Все роли</a>
+                                    role="button"><i class="fas fa-user-tag"></i> Все роли</a>
                                 @elsecan('role-list')
                                 <a class=" btn btn-sm btn-soft-primary" href="{{ route('roles.index') }}"
-                                    role="button"><i class="fas fa-plus mr-2"></i>Все роли</a>
+                                    role="button"><i class="fas fa-user-tag"></i> Все роли</a>
                             @endcan
                         </div>
                     </li>
@@ -169,10 +168,10 @@
                         <div class="nav-link">
                             @can('user-create')
                                 <a class=" btn btn-sm btn-soft-primary" href="{{ route('users.index') }}"
-                                    role="button"><i class="fas fa-plus mr-2"></i>Все пользователи</a>
+                                    role="button"><i class="fas fa-users"></i> Все пользователи</a>
                                 @elsecan('user-list')
                                 <a class=" btn btn-sm btn-soft-primary" href="{{ route('users.index') }}"
-                                    role="button"><i class="fas fa-plus mr-2"></i>Все пользователи</a>
+                                    role="button"><i class="fas fa-users"></i> Все пользователи</a>
                             @endcan
                         </div>
                     </li>

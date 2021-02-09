@@ -125,5 +125,20 @@
             <!--end card-->
         </div> <!-- end col -->
     </div>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="button-items">
+                        <a href="{{ route('roles.index') }}" class="btn btn-secondary btn-block"> <i class="fas fa-angle-double-left"></i> Назад</a>
+                    </div>
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
 
 @endsection

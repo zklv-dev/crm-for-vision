@@ -107,28 +107,28 @@
 
                         <div class="form-group">
                             <label for="clientName">Имя</label>
-                            <input type="text" name="name" class="form-control" id="clientName" placeholder="ФИО">
+                            <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="clientName" placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input type="tel" name="phone_number" class="form-control" id="clientPhoneNumber"
+                            <input value="{{ old('phone_number') }}" type="tel" name="phone_number" class="form-control" id="clientPhoneNumber"
                                 placeholder="Номер телефона">
                         </div>
 
                         <div class="form-group">
                             <label for="clientDetails">Детали</label>
-                            <textarea class="form-control" name="detail" rows="5" id="clientDetails"></textarea>
+                            <textarea class="form-control" name="detail" rows="5" id="clientDetails">{{ old('detail') }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input type="number" name="age" class="form-control" id="clientAge" placeholder="Возраст">
+                            <input value="{{ old('age') }}"  type="number" name="age" class="form-control" id="clientAge" placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
-                            <input type="text" name="city" class="form-control" id="clientCity" placeholder="Город">
+                            <input value="{{ old('city') }}" type="text" name="city" class="form-control" id="clientCity" placeholder="Город">
                         </div>
 
                         <div class="form-group">
@@ -155,12 +155,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{-- <input type="hidden" name="comment" value="Не заполнено">
-                        <input type="hidden" name="results" value="Не заполнено">
-                        <input type="hidden" name="necessary" value="Не заполнено">
-                        <select name="flag" style="display: none">
-                            <option value="Не заполнено" selected></option>
-                        </select> --}}
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>
                 </div>
@@ -169,4 +163,20 @@
             <!--end card-->
         </div> <!-- end col -->
     </div>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="button-items">
+                        <a href="{{ route('home') }}" class="btn btn-secondary btn-block"> <i
+                                class="fas fa-angle-double-left"></i> Назад</a>
+                    </div>
+                </div>
+                <!--end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
 @endsection
