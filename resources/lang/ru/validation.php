@@ -160,6 +160,7 @@ return [
         'user_new_id' => 'Назначенный менеджер',
         'email' => 'Email',
         'password' => 'Пароль',
+        'confirm-password'=> 'Повторите пароль',
         'roles' => 'Роли'
     ],
 
