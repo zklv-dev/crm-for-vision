@@ -12,7 +12,8 @@ class CommentController extends Controller
     {
         request()->validate([
             'results' => 'required',
-            'flag' => 'required'
+            'flag' => 'required',
+            'recall' => 'date_format:Y-m-d'
         ]);
 
         $comment = new Comment;
