@@ -27,7 +27,7 @@ class Client extends Model
 
     public function getClientDate()
     {
-        return Carbon::parse($this->created_at)->format('m.d.Y');
+        return Carbon::parse($this->created_at)->format('Y-m-d H:i');
     }
 
     public function user()

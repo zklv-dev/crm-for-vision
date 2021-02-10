@@ -39,10 +39,9 @@
                     <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Edit</a>
                     @endcan
                     @can('role-delete')
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' =>
-                    'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                    {!!  Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
+                    {!!  Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!!  Form::close() !!}
                     @endcan
                 </td>
             </tr>
@@ -50,8 +49,10 @@
     </table>
 
 
-    {!! $roles->render() !!} --}}
-
+    {!!  $roles->render() !!} --}}
+    @if (Session::has('success'))
+        <p class="alert alert-success">{{ Session::get('success') }}</p>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -85,7 +86,8 @@
                                         <td>{{ $role->name }}</td>
                                         <td>
                                             @can('role-edit')
-                                                <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Изменить</a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('roles.edit', $role->id) }}">Изменить</a>
                                             @endcan
                                             @can('role-delete')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id],

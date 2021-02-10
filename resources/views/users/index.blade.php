@@ -59,7 +59,9 @@
 
 
     <p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p> --}}
-
+    @if (Session::has('success'))
+        <p class="alert alert-success">{{ Session::get('success') }}</p>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">

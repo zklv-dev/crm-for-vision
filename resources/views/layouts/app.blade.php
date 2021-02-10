@@ -104,7 +104,6 @@
     <link href="{{ asset('assets/css/metisMenu.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body class="enlarge-menu">
@@ -127,7 +126,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                            document.getElementById('logout-form').submit();"><i
+                                                                                                                                                                    document.getElementById('logout-form').submit();"><i
                                         data-feather="power" class="align-self-center icon-xs icon-dual mr-1"></i> Выйти</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -143,7 +142,8 @@
                 <ul class="list-unstyled topbar-nav mb-0">
                     <li class="creat-btn">
                         <div class="nav-link">
-                            <a class=" btn btn-sm btn-soft-primary" href="{{ route('home') }}" role="button"><i class="fas fa-globe-asia"></i> Все клиенты</a>
+                            <a class=" btn btn-sm btn-soft-primary" href="{{ route('home') }}" role="button"><i
+                                    class="fas fa-globe-asia"></i> Все клиенты</a>
                         </div>
                     </li>
                     <li class="creat-btn">

@@ -53,7 +53,8 @@ class ClientController extends Controller
             'detail' => 'required',
             'age' => 'required|numeric',
             'city' => 'required',
-            'where' => 'required'
+            'where' => 'required',
+            'user_new_id' => 'required',
         ]);
 
         Client::create([
@@ -93,12 +94,14 @@ class ClientController extends Controller
 
         if (
             $client->comments->last()
-            && $client->comments->last()->flag !== 'Позвонить' 
-            && $client->comments->last()->flag !== 'Не заполнено'
+            && $client->comments->last()->flag !== 'Позвонить'
+            && $client->comments->last()->flag !== null
             && !Auth::user()->hasRole(['Admin', 'Director'])
         ) {
             return redirect('/');
         }
+
+        // dd($client->user_new_id);
         return view('clients.edit', compact('client', 'users'));
     }
 
@@ -111,23 +114,23 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $comment = new Comment;
+        $comment->results = "Не заполнено";
+        $comment->flag = $request->flag;
+        $comment->recall = $request->recall;
+        $comment->user()->associate($request->user());
+
+        if (request()->user_new_id === $client->user_new_id) {
+            $comment;
+        } else {
+            $client->comments()->save($comment);
+        }
 
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-            'age' => 'numeric',
-            'phone_number' => 'required|numeric',
-            'city' => 'required'
+            'user_new_id' => 'required',
         ]);
 
         $client->update([
-            'name' => request('name'),
-            'detail' => request('detail'),
-            'user_id' => auth()->id(),
-            'age' => request('age'),
-            'phone_number' => request('phone_number'),
-            'city' => request('city'),
-            'where' => request('where'),
             'user_new_id' => request('user_new_id')
         ]);
 

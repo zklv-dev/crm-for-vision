@@ -24,6 +24,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (Session::has('success'))
+        <p class="alert alert-success">{{ Session::get('success') }}</p>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
@@ -55,7 +58,7 @@
                                 <tr>
                                     <th>№</th>
                                     <th>Ответсвенный менеджер</th>
-                                    <th>Дата</th>
+                                    <th style="width: 90px">Дата</th>
                                     <th>ФИО</th>
                                     <th>Номер телефона клиента</th>
                                     <th>Детали</th>

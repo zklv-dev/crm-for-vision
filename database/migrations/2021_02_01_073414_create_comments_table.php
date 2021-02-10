@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('client_id')->unsigned()->nullable();
             $table->string('results')->default('Не заполнено');
-            $table->string('flag')->default('Не заполнено');
+            $table->string('flag')->default('Не заполнено')->nullable();
             $table->date('recall')->nullable();
             $table->integer('commentable_id')->unsigned();
             $table->string('commentable_type');

@@ -107,45 +107,51 @@
 
                         <div class="form-group">
                             <label for="clientName">ФИО клиента</label>
-                            <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="clientName" placeholder="ФИО">
+                            <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="clientName"
+                                placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input value="{{ old('phone_number') }}" type="tel" name="phone_number" class="form-control" id="clientPhoneNumber"
-                                placeholder="Номер телефона">
+                            <input value="{{ old('phone_number') }}" type="tel" name="phone_number" class="form-control"
+                                id="clientPhoneNumber" placeholder="Номер телефона">
                         </div>
 
                         <div class="form-group">
                             <label for="clientDetails">Детали</label>
-                            <textarea class="form-control" name="detail" rows="5" id="clientDetails">{{ old('detail') }}</textarea>
+                            <textarea class="form-control" name="detail" rows="5"
+                                id="clientDetails">{{ old('detail') }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input value="{{ old('age') }}"  type="number" name="age" class="form-control" id="clientAge" placeholder="Возраст">
+                            <input value="{{ old('age') }}" type="number" name="age" class="form-control" id="clientAge"
+                                placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
-                            <input value="{{ old('city') }}" type="text" name="city" class="form-control" id="clientCity" placeholder="Город">
+                            <input value="{{ old('city') }}" type="text" name="city" class="form-control" id="clientCity"
+                                placeholder="Город">
                         </div>
 
                         <div class="form-group">
                             <label for="clientWhere">Откуда клиент узнал о нас</label>
                             <select type="text" name="where" class="form-control" id="clientWhere"
                                 placeholder="Откуда клиент узнал о нас">
+                                <option value="" selected>Не выбрано</option>
                                 <option value="Инстаграм">Инстаграм</option>
                                 <option value="Фэйсбук">Фэйсбук</option>
-                                <option value="Лалфо">Лалафо</option>
+                                <option value="Лалафо">Лалафо</option>
                                 <option value="Подсказали друзья, родственники">Подсказали друзья, родственники</option>
+                                <option value="Другое">Другое</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <strong>Назначить менеджера:</strong>
                             <br />
                             <select class="form-control" name="user_new_id">
-                                <option value="Не выбрано" selected>Не выбрано</option>
+                                <option value="" selected>Не выбрано</option>
                                 @foreach ($users as $user)
                                     @if (!$user->hasRole('Admin'))
                                         <option value="{{ $user->name }}">

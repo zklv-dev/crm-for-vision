@@ -10,11 +10,17 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
-        request()->validate([
-            'results' => 'required',
-            'flag' => 'required',
-            'recall' => 'date_format:Y-m-d'
-        ]);
+        if (request()->flag === 'Позвонить') {
+            request()->validate([
+                'results' => 'required',
+                'flag' => 'required',
+                'recall' => 'required|date_format:Y-m-d'
+            ]);
+        } elseif (request()->flag !== 'Позвонить') {
+            request()->validate([
+                'results' => 'required',
+            ]);
+        }
 
         $comment = new Comment;
         $comment->results = $request->results;
@@ -24,9 +30,8 @@ class CommentController extends Controller
         $comment->user()->associate($request->user());
 
         $client = Client::find($request->client_id);
-
         $client->comments()->save($comment);
 
-        return back();
+        return back()->with('success', 'Комментарий добавлен');
     }
 }
