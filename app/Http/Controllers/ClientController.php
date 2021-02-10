@@ -134,7 +134,7 @@ class ClientController extends Controller
             'user_new_id' => request('user_new_id')
         ]);
 
-        return back();
+        return back()->with('success', 'Данные успешно обновлены');
     }
 
     /**
