@@ -188,8 +188,8 @@
             </div><!-- container -->
 
             <footer class="footer text-center text-sm-left">
-                &copy; 2020 CRM <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Zalkar</span>
+                &copy; 2021 CRM <span class="d-none d-sm-inline-block float-right">Crafted with <i
+                        class="mdi mdi-heart text-danger"></i> by OwnCRM</span>
             </footer>
             <!--end footer-->
         </div>
