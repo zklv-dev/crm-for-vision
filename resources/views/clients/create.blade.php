@@ -106,7 +106,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="clientName">Имя</label>
+                            <label for="clientName">ФИО клиента</label>
                             <input value="{{ old('name') }}" type="text" name="name" class="form-control" id="clientName" placeholder="ФИО">
                         </div>
 
@@ -140,7 +140,7 @@
                                 <option value="Лалфо">Лалафо</option>
                                 <option value="Подсказали друзья, родственники">Подсказали друзья, родственники</option>
                             </select>
-                        </div>xW2r8ax%
+                        </div>
                         <div class="form-group">
                             <strong>Назначить менеджера:</strong>
                             <br />

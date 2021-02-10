@@ -108,7 +108,7 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="clientName">Имя</label>
+                            <label for="clientName">ФИО клиента</label>
                             <input @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif value="{{ $client->name }}" type="text" name="name"
                                 class="form-control" id="clientName" placeholder="ФИО">
                         </div>
