@@ -19,6 +19,7 @@ class CommentController extends Controller
         } elseif (request()->flag !== 'Позвонить') {
             request()->validate([
                 'results' => 'required',
+                'flag' => 'required'
             ]);
         }
 
