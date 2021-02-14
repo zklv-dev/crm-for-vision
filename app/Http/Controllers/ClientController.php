@@ -24,7 +24,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::all()->sortDesc();
         return view('home', compact('clients'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
