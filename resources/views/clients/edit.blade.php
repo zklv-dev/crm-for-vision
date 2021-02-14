@@ -111,12 +111,12 @@
 
                         <div class="form-group">
                             <label for="clientName">ФИО клиента</label>
-                            <input disabled type="text" name="name" class="form-control" id="clientName" placeholder="ФИО">
+                            <input disabled type="text" value="{{ $client->name }}" name="name" class="form-control" id="clientName" placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input disabled type="number" name="phone_number" class="form-control" id="clientPhoneNumber"
+                            <input disabled type="number" value="{{ $client->phone_number }}" name="phone_number" class="form-control" id="clientPhoneNumber"
                                 placeholder="Номер телефона">
                         </div>
 
@@ -128,14 +128,14 @@
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input disabled type="number" name="age" class="form-control" id="clientAge"
+                            <input disabled type="number" value="{{ $client->age }}" name="age" class="form-control" id="clientAge"
                                 placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
 
-                            <input disabled type="text" name="city" class="form-control" id="clientCity"
+                            <input disabled type="text" name="city" value="{{ $client->city }}" class="form-control" id="clientCity"
                                 placeholder="Город">
                         </div>
 
