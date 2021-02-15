@@ -15,11 +15,11 @@ class AddToClientsTable extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->default(1);
-            $table->integer('age')->default(0);
+            $table->integer('age')->default(0)->nullable();
             $table->bigInteger('phone_number')->default(0);
-            $table->string('city')->default('Не заполнено');
+            $table->string('city')->default('Не заполнено')->nullable();
             $table->string('where')->default('Не заполнено'); 
-            $table->string('user_new_id');
+            $table->string('user_new_id')->nullable();
         });
     }
 

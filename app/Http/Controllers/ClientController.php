@@ -51,10 +51,7 @@ class ClientController extends Controller
             'name' => 'required',
             'phone_number' => 'required|numeric',
             'detail' => 'required',
-            'age' => 'required|numeric',
-            'city' => 'required',
             'where' => 'required',
-            'user_new_id' => 'required',
         ]);
 
         Client::create([
@@ -131,7 +128,7 @@ class ClientController extends Controller
         ]);
 
         $client->update([
-            'user_new_id' => request('user_new_id')
+            'user_new_id' => request('user_new_id'),
         ]);
 
         return back()->with('success', 'Данные успешно обновлены');

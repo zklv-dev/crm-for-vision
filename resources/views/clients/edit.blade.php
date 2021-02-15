@@ -111,32 +111,33 @@
 
                         <div class="form-group">
                             <label for="clientName">ФИО клиента</label>
-                            <input disabled type="text" value="{{ $client->name }}" name="name" class="form-control" id="clientName" placeholder="ФИО">
+                            <input disabled type="text" value="{{ $client->name }}" name="name" class="form-control"
+                                id="clientName" placeholder="ФИО">
                         </div>
 
                         <div class="form-group">
                             <label for="clientPhoneNumber">Номер телефона</label>
-                            <input disabled type="number" value="{{ $client->phone_number }}" name="phone_number" class="form-control" id="clientPhoneNumber"
-                                placeholder="Номер телефона">
+                            <input disabled type="number" value="{{ $client->phone_number }}" name="phone_number"
+                                class="form-control" id="clientPhoneNumber" placeholder="Номер телефона">
                         </div>
 
                         <div class="form-group">
                             <label for="clientDetails">Детали</label>
                             <textarea disabled class="form-control" name="detail" rows="5"
-                                id="clientDetails">{{ $client->detail }}</textarea>
+                                id="clientDetails">{{ $client->detail  }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="clientAge">Возраст</label>
-                            <input disabled type="number" value="{{ $client->age }}" name="age" class="form-control" id="clientAge"
-                                placeholder="Возраст">
+                            <input disabled type="text" value="{{ $client->age  ?? 'Не заполнено'}}" name="age" class="form-control"
+                                id="clientAge" placeholder="Возраст">
                         </div>
 
                         <div class="form-group">
                             <label for="clientCity">Город</label>
 
-                            <input disabled type="text" name="city" value="{{ $client->city }}" class="form-control" id="clientCity"
-                                placeholder="Город">
+                            <input disabled type="text" name="city" value="{{ $client->city ?? 'Не заполнено' }}" class="form-control"
+                                id="clientCity" placeholder="Город">
                         </div>
 
                         <div class="form-group">
@@ -155,8 +156,12 @@
                         <div class="form-group">
                             <strong>Назначенный менеджер:</strong>
                             <br />
-                            <select class="form-control" @if (!Auth::user()->hasRole(['Admin', 'Director'])) disabled @endif name="user_new_id">
-                                <option value="{{ $client->user_new_id }}">{{ $client->user_new_id }}</option>
+                            <select class="form-control" name="user_new_id">
+                                @if ($client->user_new_id !== null)
+                                    <option value="{{ $client->user_new_id }}">{{ $client->user_new_id }}</option>
+                                @else
+                                    <option value="">Выбрать менеджера</option>
+                                @endif
                                 @foreach ($users as $user)
                                     @if (!$user->hasRole('Admin') && $client->user_new_id !== $user->name)
                                         <option value="{{ $user->name }}">
@@ -167,13 +172,11 @@
                             </select>
                         </div>
 
-                        @if (Auth::user()->hasRole(['Admin', 'Director']))
-                            <button type="submit" id="submitBtn" class="btn btn-primary">Обновить данные</button>
-                            <div class="page-title-box">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Обновить данные</button>
+                        <div class="page-title-box">
 
-                            </div>
-                            <!--end page-title-box-->
-                        @endif
+                        </div>
+                        <!--end page-title-box-->
                     </form>
                     <form method="POST" action="{{ route('comment.add') }}" id="editForm2">
                         @csrf

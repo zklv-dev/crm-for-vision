@@ -147,7 +147,7 @@
                                 <option value="Другое">Другое</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <strong>Назначить менеджера:</strong>
                             <br />
                             <select class="form-control" name="user_new_id">
@@ -160,7 +160,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>
                 </div>
