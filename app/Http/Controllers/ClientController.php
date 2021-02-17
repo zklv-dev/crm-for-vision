@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use WeStacks\TeleBot\TeleBot;
 
 class ClientController extends Controller
 {
@@ -47,6 +48,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $client = Client::all()->last();
         request()->validate([
             'name' => 'required',
             'phone_number' => 'required|numeric',
@@ -64,6 +66,21 @@ class ClientController extends Controller
             'where' => request('where'),
             'user_new_id' => request('user_new_id')
         ]);
+
+        $bot = new TeleBot('1625682503:AAFZaGcuk_5FtQyelwqoqoSrnfknBdtHmPs');
+
+        // See docs for details:  https://core.telegram.org/bots/api#sendmessage
+        $message = $bot->sendMessage([
+            'chat_id' => -596492339,
+            'text' => Auth::user()->name . " добавил(а) клиента: \n Имя: " . $request->name . " \n Номер телефона: " . $request->phone_number . "\n Детали разговора: " . $request->detail . "\n Дата/Время добавления: " . date("Y-m-d H:i"),
+            'reply_markup' => [
+                'inline_keyboard' => [[[
+                    'text' => 'Детали',
+                    'url' => 'http://127.0.0.1:8000/clients/' .  ++$client->id . '/edit'
+                ]]]
+            ]
+        ]);
+
 
         return redirect()->route('home')->with('success', 'Клиент создан успешно');
     }
@@ -129,6 +146,20 @@ class ClientController extends Controller
 
         $client->update([
             'user_new_id' => request('user_new_id'),
+        ]);
+
+        $bot = new TeleBot('1625682503:AAFZaGcuk_5FtQyelwqoqoSrnfknBdtHmPs');
+
+        // See docs for details:  https://core.telegram.org/bots/api#sendmessage
+        $message = $bot->sendMessage([
+            'chat_id' => -596492339,
+            'text' => "Менеджер: " . $request->user_new_id . " \n Взял(а) клиента:" . $client->name . " \n Дата: " . date("Y-m-d H:i"),
+            'reply_markup' => [
+                'inline_keyboard' => [[[
+                    'text' => 'Детали',
+                    'url' => 'http://127.0.0.1:8000/clients/' .  $client->id . '/edit'
+                ]]]
+            ]
         ]);
 
         return back()->with('success', 'Данные успешно обновлены');
