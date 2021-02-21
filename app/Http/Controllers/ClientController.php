@@ -71,12 +71,12 @@ class ClientController extends Controller
 
         // See docs for details:  https://core.telegram.org/bots/api#sendmessage
         $message = $bot->sendMessage([
-            'chat_id' => -596492339,
+            'chat_id' => -508917751,
             'text' => Auth::user()->name . " добавил(а) клиента: \n Имя: " . $request->name . " \n Номер телефона: " . $request->phone_number . "\n Детали разговора: " . $request->detail . "\n Дата/Время добавления: " . date("Y-m-d H:i"),
             'reply_markup' => [
                 'inline_keyboard' => [[[
                     'text' => 'Детали',
-                    'url' => 'http://127.0.0.1:8000/clients/' .  ++$client->id . '/edit'
+                    'url' => 'http://213.139.211.247/clients/' .  ++$client->id . '/edit'
                 ]]]
             ]
         ]);

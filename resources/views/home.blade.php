@@ -74,16 +74,16 @@
                             </thead>
                             <tbody>
                                 @foreach ($clients as $key => $client)
-                                <tr style="@if ($client->user_new_id === null) background: greenyellow @elseif($client->user_new_id !== null)
-                                        background: #F56F6F @endif">
+                                <tr style="@if ($client->user_new_id === null) background: #F56F6F @elseif($client->user_new_id !== null)
+                                        background: greenyellow @endif">
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $client->user->name }}</td>
                                         <td>{{ $client->getClientDate() }}</td>
                                         <td>{{ $client->name }}</td>
                                         <td>{{ $client->phone_number }}</td>
                                         <td>{{ $client->detail }}</td>
-                                        <td>{{ $client->age ?? 'Не заполнено'}}</td>
-                                        <td>{{ $client->city ?? 'Не заполнено'}}</td>
+                                        <td>{{ $client->age ?? 'Не заполнено' }}</td>
+                                        <td>{{ $client->city ?? 'Не заполнено' }}</td>
                                         <td>{{ $client->where }}</td>
                                         <td>{{ $client->user_new_id ?? 'Не заполнено' }}</td>
                                         {{-- {{ $client->comments }} --}}
